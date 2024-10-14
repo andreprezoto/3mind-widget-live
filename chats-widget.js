@@ -164,14 +164,13 @@
   const chatIframe = document.getElementById("chat-iframe");
   const closeButton = document.getElementById("chat-close");
   const widgetMessage = document.getElementById("chat-widget-message");
-  const widgetClientId = document.getElementById("chat-widget-client-id");
+
+  // Mova a declaração de clientId para o escopo global do widget
+  window.chatWidget = window.chatWidget || {};
+  window.chatWidget.clientId = "";
 
   function setWidgetMessage(message) {
     widgetMessage.textContent = message;
-  }
-
-  function setClientId(id) {
-    widgetClientId.textContent = id;
   }
 
   function openChat() {
@@ -182,8 +181,12 @@
     chatWindow.style.display = "none";
   }
 
+  function setClientId(id) {
+    window.chatWidget.clientId = id;
+  }
+
   function getClientId() {
-    return clientId;
+    return window.chatWidget.clientId;
   }
 
   function setChatUrl(url) {
@@ -235,10 +238,12 @@
   };
   document.head.appendChild(script);
 
-  // Expor funções para uso externo
+  // Atualize a exposição das funções para uso externo
   window.chatWidget = {
+    ...window.chatWidget,
     setWidgetMessage,
     setChatUrl,
     setClientId,
+    getClientId,
   };
 })();
