@@ -189,8 +189,8 @@
     return clientId;
   }
 
-  function setChatUrl(url) {
-    const currentClientId = getClientId();
+  function setChatUrl(url, id) {
+    const currentClientId = id;
     console.log("setChatUrl - clientId atual: ", currentClientId);
 
     if (currentClientId) {
