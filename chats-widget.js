@@ -192,8 +192,13 @@
   function setChatUrl(url) {
     const currentClientId = getClientId();
     console.log("setChatUrl - clientId atual: ", currentClientId);
-    const urlWithClientId = `${url}?client_id=${currentClientId}`;
-    chatIframe.src = urlWithClientId;
+
+    if (currentClientId) {
+      const urlWithClientId = `${url}?client_id=${currentClientId}`;
+      chatIframe.src = urlWithClientId;
+    } else {
+      console.warn("setChatUrl: clientId is empty. Chat URL not set.");
+    }
   }
 
   widgetContainer.addEventListener("click", openChat);
