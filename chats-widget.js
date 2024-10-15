@@ -166,7 +166,7 @@
   const widgetMessage = document.getElementById("chat-widget-message");
   let clientId = "";
 
-  console.log("clientId: ", clientId);
+  console.log("clientId inicial: ", clientId);
 
   function setWidgetMessage(message) {
     widgetMessage.textContent = message;
@@ -182,6 +182,7 @@
 
   function setClientId(id) {
     clientId = id;
+    console.log("clientId atualizado: ", clientId);
   }
 
   function getClientId() {
@@ -189,8 +190,9 @@
   }
 
   function setChatUrl(url) {
-    const clientId = getClientId();
-    const urlWithClientId = `${url}?client_id=${clientId}`;
+    const currentClientId = getClientId();
+    console.log("setChatUrl - clientId atual: ", currentClientId);
+    const urlWithClientId = `${url}?client_id=${currentClientId}`;
     chatIframe.src = urlWithClientId;
   }
 
