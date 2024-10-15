@@ -164,11 +164,7 @@
   const chatIframe = document.getElementById("chat-iframe");
   const closeButton = document.getElementById("chat-close");
   const widgetMessage = document.getElementById("chat-widget-message");
-  const widgetClientId = document.getElementById("chat-widget-client-id");
-
-  // Mova a declaração de clientId para o escopo global do widget
-  window.chatWidget = window.chatWidget || {};
-  window.chatWidget.clientId = "";
+  let clientId = "";
 
   function setWidgetMessage(message) {
     widgetMessage.textContent = message;
@@ -183,11 +179,11 @@
   }
 
   function setClientId(id) {
-    widgetClientId.textContent = id;
+    clientId = id;
   }
 
   function getClientId() {
-    return widgetClientId.textContent;
+    return clientId;
   }
 
   function setChatUrl(url) {
@@ -239,9 +235,8 @@
   };
   document.head.appendChild(script);
 
-  // Atualize a exposição das funções para uso externo
+  // Expor funções para uso externo
   window.chatWidget = {
-    ...window.chatWidget,
     setWidgetMessage,
     setChatUrl,
     setClientId,
