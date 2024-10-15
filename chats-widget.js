@@ -164,7 +164,9 @@
   const chatIframe = document.getElementById("chat-iframe");
   const closeButton = document.getElementById("chat-close");
   const widgetMessage = document.getElementById("chat-widget-message");
-  const clientId = "";
+  let clientId = "";
+
+  console.log("clientId: ", clientId);
 
   function setWidgetMessage(message) {
     widgetMessage.textContent = message;
