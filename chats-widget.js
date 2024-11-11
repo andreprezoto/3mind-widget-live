@@ -189,12 +189,13 @@
     return clientId;
   }
 
-  function setChatUrl(url, id) {
+  function setChatUrl(url, id, message) {
     const currentClientId = id;
+    const currentMessage = message;
     console.log("setChatUrl - clientId atual: ", currentClientId);
 
     if (currentClientId) {
-      const urlWithClientId = `${url}?client_id=${currentClientId}`;
+      const urlWithClientId = `${url}?client_id=${currentClientId}&message=${currentMessage}`;
       chatIframe.src = urlWithClientId;
     } else {
       console.warn("setChatUrl: clientId is empty. Chat URL not set.");
